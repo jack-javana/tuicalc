@@ -78,9 +78,9 @@ void select_button(int pos_1, int pos_2){
         int but_pos_y2{but_pos_y0};
         for(int i1 = 0; i1 <= but_mas_1-1; i1++){
                 for(int i2{0}; i2 <= but_mas_2-1; i2++){
-                        draw_button(but_pos_x2+calc_size_x0-1, but_pos_y2+calc_size_y0-1, buttons[i1][i2], button_color_bg, button_color_fg);
+                        drwlib::draw_button(but_pos_x2+calc_size_x0-1, but_pos_y2+calc_size_y0-1, buttons[i1][i2], button_color_bg, button_color_fg);
 			if(pos_1 == i1 && pos_2 == i2){
-				draw_button(but_pos_x2+calc_size_x0-1, but_pos_y2+calc_size_y0-1, buttons[i1][i2], button_color_active_bg, button_color_active_fg);
+				drwlib::draw_button(but_pos_x2+calc_size_x0-1, but_pos_y2+calc_size_y0-1, buttons[i1][i2], button_color_active_bg, button_color_active_fg);
 			}
                         but_pos_x2 = but_pos_x2 + 4;
                 }
@@ -101,23 +101,21 @@ void print_result(int pos_pr_x, int pos_pr_y, int indicator_1){
                 print_result_str.resize(calc_size_x1 - calc_pos_x - 5);
                 print_result_str += "...";
         }
-        draw_rect(pos_pr_x, pos_pr_y, 18, 1, num_screen_fg, num_screen_bg);
-        gotoxy(pos_pr_x, pos_pr_y);
-	setcolor(40, 37);
-        std::cout << print_result_str << std::flush;
-        gotoxy(calc_size_x1, calc_size_y1);
+        drwlib::draw_rect(pos_pr_x, pos_pr_y, 18, 1, num_screen_fg, num_screen_bg);
+	drwlib::setcolor(40, 37);
+	drwlib::printxy(pos_pr_x, pos_pr_y, print_result_str);
+        drwlib::gotoxy(calc_size_x1, calc_size_y1);
         print_result_str = "";
 }
 
 void print_numbers(int num_pos_x, int num_pos_y){
-	draw_rect(calc_size_x0+1, calc_size_y0+2, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
-	gotoxy(num_pos_x, num_pos_y);
+	drwlib::draw_rect(calc_size_x0+1, calc_size_y0+2, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
 	if(number_massive[number_n].length() > calc_size_x1 - calc_pos_x - 2){
 		number_massive[number_n].pop_back();
 	}
-	setcolor(40, 37);
-	std::cout << number_massive[number_n];
-	gotoxy(calc_size_x1, calc_size_y1);
+	drwlib::setcolor(40, 37);
+	drwlib::printxy(num_pos_x, num_pos_y, number_massive[number_n]);
+	drwlib::gotoxy(calc_size_x1, calc_size_y1);
 }
 
 void if_but_num_pos(int bnp_1, int bnp_2, std::string num_str){
@@ -133,9 +131,8 @@ void if_but_num_pos(int bnp_1, int bnp_2, std::string num_str){
 void if_but_act_pos(int bnp_1, int bnp_2, std::string act_str_1, std::string act_str_2){
 	if(ind::act == 1){
 		if(but::bnp_1 == bnp_1 && but::bnp_2 == bnp_2){
-			draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
-			gotoxy(calc_size_x0+1 ,calc_size_y0+2);
-			std::cout << act_str_1 << std::flush;
+			drwlib::draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
+			drwlib::printxy(calc_size_x0+1 ,calc_size_y0+2, act_str_1);
         	        action_massive[action_n] = act_str_2;
         	        action_n++;
         	        number_n++;
@@ -159,19 +156,19 @@ void equ_func(int bnp_1, int bnp_2, std::string ext_1, std::string ext_2, std::s
                		std::string com_bc_str = "echo '" + ext_1 + command_str + ext_2 + "' | bc" + ext_3;
                 	char * com_bc = new char[com_bc_str.length()+1];
                 	strcpy(com_bc, com_bc_str.c_str());
-                	draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
-                	gotoxy(calc_size_x0+1, calc_size_y0+2);
+                	drwlib::draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
+                	drwlib::gotoxy(calc_size_x0+1, calc_size_y0+2);
 			system(com_bc);
 			print_result(calc_size_x0+1, calc_size_y0+1, 1);
-                	gotoxy(calc_size_x1, calc_size_y1);
+                	drwlib::gotoxy(calc_size_x1, calc_size_y1);
 			ind::equ_1 = 1;
 		}
 	}
 }
 
 void draw_logo(){
-	draw_rect(calc_size_x0+21, calc_size_y0+4, calc_size_x1-1, calc_size_y1-1, logo_fg, logo_bg);
-	setcolor(logo_bg, logo_fg);
+	drwlib::draw_rect(calc_size_x0+21, calc_size_y0+4, calc_size_x1-1, calc_size_y1-1, logo_fg, logo_bg);
+	drwlib::setcolor(logo_bg, logo_fg);
  	const int pic_heigth{8};
 	std::string pic[pic_heigth]{
 		"           TUICalc",
@@ -184,17 +181,17 @@ void draw_logo(){
 		"   █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█"
 	};
 	for(int count{0}; count <= pic_heigth-1; ++count){
-		printxy(calc_size_x0+21, calc_size_y0+5 + count, pic[count]);
+		drwlib::printxy(calc_size_x0+21, calc_size_y0+5 + count, pic[count]);
 	}
 }
 
 void draw_logo_help(){
-	draw_rect(calc_size_x0+21, calc_size_y0+4, calc_size_x1-1, calc_size_y1-1, logo_fg, logo_bg);
-        setcolor(logo_bg, logo_fg);
+	drwlib::draw_rect(calc_size_x0+21, calc_size_y0+4, calc_size_x1-1, calc_size_y1-1, logo_fg, logo_bg);
+        drwlib::setcolor(logo_bg, logo_fg);
         const int help_heigth{9};	
 	std::string help[help_heigth]{
 		"        Help screen",
-		" c - clear",
+		" c - drwlib::clear",
 		" s - sqrt",
 		" d - sin",
 		" v - cos",
@@ -204,7 +201,7 @@ void draw_logo_help(){
 		" b - back to main screen"
 	};
 	for(int count{0}; count <= help_heigth-1; ++count){
-                printxy(calc_size_x0+21, calc_size_y0+4 + count, help[count]);
+                drwlib::printxy(calc_size_x0+21, calc_size_y0+4 + count, help[count]);
         }
 }
 
@@ -213,16 +210,15 @@ void resize_window(){
         if(calc_size_tmp != win_size_w){
                 calc_size_x1 = win_size_w;
                 if(win_size_h <= 12 + calc_size_y0 || win_size_w <= 21 + calc_size_x0){
-			clear();
-                        std::cout << "smol pepis" << std::endl;
+			drwlib::clear();
                         death = 1;
                 }
                 if(win_size_w >= 50  + calc_size_x0){
                         calc_size_x1 = 50 + calc_size_x0;
                 }
-                clear();
-                draw_rect(calc_size_x0, calc_size_y0, calc_size_x1, calc_size_y1, calc_color_fg, calc_color_bg);
-                draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
+                drwlib::clear();
+                drwlib::draw_rect(calc_size_x0, calc_size_y0, calc_size_x1, calc_size_y1, calc_color_fg, calc_color_bg);
+                drwlib::draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
 		if(win_size_w >= 50  + calc_size_x0){
                         draw_logo();
                 }
@@ -289,13 +285,13 @@ void number_action(){
                 }
 		number_n = 0;
                 action_n = 0;
-		draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
-		gotoxy(calc_size_x1, calc_size_y1);
+		drwlib::draw_rect(calc_size_x0+1, calc_size_y0+1, calc_size_x1-1, calc_size_y0+2, num_screen_fg, num_screen_bg);
+		drwlib::gotoxy(calc_size_x1, calc_size_y1);
         }
 	if(but::bnp_1 == 0 && but::bnp_2 == 0){
-		clear();
+		drwlib::clear();
 		death = 1;
-		cursor_mode(0);
+		drwlib::cursor_mode(0);
 	}
 
 }
@@ -309,7 +305,7 @@ void num_act_key(int sel_pos_1, int sel_pos_2){
 }
 
 int main(){
-	cursor_mode(1);
+	drwlib::cursor_mode(1);
 	resize_window();
 	set_keypress();
 	select_button(0, 0);
@@ -317,7 +313,7 @@ int main(){
 		if(death == 1){
 			return 0;
 		}
-		gotoxy(calc_size_x1, calc_size_y1);
+		drwlib::gotoxy(calc_size_x1, calc_size_y1);
 		switch(int symbol{getchar()}){
 			case 67:
 				resize_window();
@@ -384,6 +380,5 @@ int main(){
 			case 98: if(win_size_w >= 50  + calc_size_x0){draw_logo();} break;
 		}
 	}
-	std::cout << std::endl;
 	return 0;
 }
