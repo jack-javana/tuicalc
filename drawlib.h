@@ -5,7 +5,7 @@ void clear(){std::cout << "\033[49;37m" << std::flush << "\033[H\033[2J" << std:
 
 void setcolor(int bg, int fg){std::cout << "\033[" << bg << ";" << fg << "m" << std::flush;}
 
-/* Set cursor mode (1 = hide cursor, 2 = show cursor) */
+/* Set cursor mode (0 = show cursor, 1 = hide cursor) */
 
 void cursor_mode(int mode){
         switch(mode){
