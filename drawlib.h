@@ -52,4 +52,10 @@ namespace drwlib{
 		gotoxy(x, y);
 		std::cout << str;
 	}
+	void draw_pic(int pos_x, int pos_y, int heigth, int bg, int fg, std::string str[]){
+		drwlib::setcolor(bg, fg);
+		for(int count { 0 }; count <= heigth-1; ++count) { 
+			drwlib::printxy(pos_x, pos_y + count, str[count]);
+	 	}
+	}
 }
