@@ -1,4 +1,6 @@
 /* This is header of TUICalc */
+#ifndef TUICALC_H
+#define TUICALC_H
 
 namespace tcalc{
 	const int pic_heigth { 8 };
@@ -27,3 +29,5 @@ namespace tcalc{
 	  };
 
 }
+
+#endif /* TUICALC_H */
