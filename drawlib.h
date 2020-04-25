@@ -1,4 +1,6 @@
 /* Library for simple drawing */
+#ifndef DRAWLIB_H
+#define DRAWLIB_H
 
 namespace drwlib{
 	/* Clear screen */
@@ -59,3 +61,5 @@ namespace drwlib{
 	 	}
 	}
 }
+
+#endif /* DRAWLIB_H */
