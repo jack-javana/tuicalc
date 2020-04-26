@@ -45,7 +45,7 @@ namespace drwlib{
 	
 	void draw_button(int button_y, int button_x, std::string text, int bg, int fg){
 	        std::cout << "\033[" << button_x << ";" << button_y << "H";
-	        std::cout << "\033[" << bg << ";" << fg << "m " << text << " \033[0m" << std::flush;
+	        std::cout << "\033[" << bg << ";" << fg << "m" << text << "\033[0m" << std::flush;
 	}
 	
 	/* Print text to X, Y */

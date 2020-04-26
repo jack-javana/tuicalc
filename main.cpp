@@ -69,11 +69,11 @@ void reset_keypress(void) {
 
 void select_button(int pos_1, int pos_2) { 
 	std::string buttons [ but_mas_1 ] [ but_mas_2 ]= { 
-		 { "Q", "C", "B", "s", "c" },
-	         { "1", "2", "3", "÷", "√" },
-	         { "4", "5", "6", "×", "^" },
-	         { "7", "8", "9", "-", "(" },
-	         { "0", ".", "=", "+", ")" }
+		 { " Q ", " C ", " B ", " s ", " c " },
+	         { " 1 ", " 2 ", " 3 ", " / ", " √ " },
+	         { " 4 ", " 5 ", " 6 ", " * ", " ^ " },
+	         { " 7 ", " 8 ", " 9 ", " - ", " ( " },
+	         { " 0 ", " . ", " = ", " + ", " ) " }
 	 };
         int but_pos_x2 { but_pos_x0 };
         int but_pos_y2 { but_pos_y0 };
@@ -83,7 +83,7 @@ void select_button(int pos_1, int pos_2) {
 			if(pos_1 == i1 && pos_2 == i2) { 
 				drwlib::draw_button(but_pos_x2+calc_size_x0-1, but_pos_y2+calc_size_y0-1, buttons[ i1 ][ i2 ], button_color_active_bg, button_color_active_fg);
 			 }
-                        but_pos_x2 = but_pos_x2 + 4;
+                        but_pos_x2 += buttons[ i1 ][ i2 ].length() + 1;
                  }
                 but_pos_x2 = but_pos_x0;
                 but_pos_y2 = but_pos_y2 + 2;
