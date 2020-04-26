@@ -1,3 +1,8 @@
+/* This header file contains Tuicalc settings */
+
+#ifndef TUICALC_SETTINGS_H
+#define TUICALC_SETTINGS_H
+
 namespace COLOR{
 	enum class BG{
 		BLACK           = 40,
@@ -50,3 +55,5 @@ int num_screen_bg{static_cast<int>(COLOR::BG::BLACK)};
 int num_screen_fg{static_cast<int>(COLOR::FG::WHITE)};
 int logo_bg{static_cast<int>(COLOR::BG::BRIGHT_CYAN)};
 int logo_fg{static_cast<int>(COLOR::FG::BLACK)};
+
+#endif /* TUICALC_SETTINGS_H */
